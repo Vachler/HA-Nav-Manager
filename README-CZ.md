@@ -1,10 +1,29 @@
+<a href="README.md"><img src="https://img.shields.io/badge/🇬🇧%20English-a3e635?style=for-the-badge" alt="English" height="34"></a>
+<a href="README-CZ.md"><img src="https://img.shields.io/badge/🇨🇿%20Čeština-2563eb?style=for-the-badge" alt="Čeština" height="34"></a>
+
 # HA Nav Manager
 
-[English](README.md) · **Čeština**
 
 Vizuální správce navigace pro **Home Assistant**. Upravujte horní lištu, boční panel a dashboardy v jednom rozhraní. Po instalaci nastavujete tlačítka, cíle a vzhled přímo v editoru.
 
-## Funkce
+**Aktuální verze: 0.8.3** · **28 jazyků** · **Jediný JavaScript soubor**
+
+## Obsah
+
+- [Funkce](#features)
+- [Požadavky](#requirements)
+- [Instalace](#installation)
+- [Aktualizace souboru](#updates)
+- [Když se správce nezobrazuje](#troubleshooting)
+- [Ukládání a jazyky](#storage-languages)
+- [Omezení](#limitations)
+- [Vývoj](#development)
+
+---
+
+<a id="features"></a>
+
+## ⚙️ Funkce
 
 ### Horní lišta
 
@@ -35,13 +54,21 @@ Správce přebírá nativní uživatelské pořadí. Ruční pořadí výslovně
 - Mazání dashboardů s potvrzením. **Smazání odstraní také jejich Lovelace konfiguraci.**
 - YAML dashboardy jsou pouze pro čtení. URL existujícího dashboardu nelze tímto editorem změnit.
 
-## Požadavky
+---
+
+<a id="requirements"></a>
+
+## 🧩 Požadavky
 
 Home Assistant s přístupem ke konfigurační složce a účet správce pro editor a správu dashboardů.
 
 Instaluje se pouze **[ha-nav-manager.js](ha-nav-manager.js)**. Není potřeba sestavení projektu ani instalace Python integrace.
 
-## Instalace
+---
+
+<a id="installation"></a>
+
+## 📦 Instalace
 
 ### 1. Nahrajte soubor
 
@@ -98,7 +125,11 @@ Přihlaste se jako správce a otevřete dashboard. V menu horní lišty **⋮** 
 
 Editor má záložky pro horní lištu, boční panel a dashboardy. Změny tlačítek a sidebaru potvrďte tlačítkem **Uložit**. Vytvoření, aktualizace a smazání dashboardu se provedou samostatnými tlačítky přímo v jeho formuláři.
 
-## Aktualizace souboru
+---
+
+<a id="updates"></a>
+
+## 🔄 Aktualizace souboru
 
 1. Stáhněte aktuální `ha-nav-manager.js` a nahraďte jím soubor ve složce `www`.
 2. Zachovejte stejný název souboru. Odkaz `/local/ha-nav-manager.js` v `configuration.yaml` pod `frontend` → `extra_module_url` pak nemusíte měnit.
@@ -106,7 +137,11 @@ Editor má záložky pro horní lištu, boční panel a dashboardy. Změny tlač
 
 Při pouhé výměně JS souboru není potřeba restartovat Home Assistant. Pokud změníte název souboru nebo jeho cestu, upravte také odkaz v `configuration.yaml` a restartujte službu Home Assistant. Nastavení správce zůstává zachované.
 
-## Když se správce nezobrazuje
+---
+
+<a id="troubleshooting"></a>
+
+## 🩺 Když se správce nezobrazuje
 
 1. V editoru souborů otevřete používaný `configuration.yaml` (například `/homeassistant/configuration.yaml`). V sekci `frontend` → `extra_module_url` zkontrolujte odkaz `/local/ha-nav-manager.js`. Název musí přesně odpovídat souboru `ha-nav-manager.js` ve složce `www`, včetně velikosti písmen.
 2. Do adresního řádku prohlížeče zadejte adresu svého HA a připojte `/local/ha-nav-manager.js`, například `http://193.165.1.10:8123/local/ha-nav-manager.js`. Použijte svůj protokol, adresu a port. Musí se zobrazit JavaScript, nikoli chyba 404 nebo stránka GitHubu.
@@ -114,7 +149,11 @@ Při pouhé výměně JS souboru není potřeba restartovat Home Assistant. Poku
 4. **Počítač – načtení bez mezipaměti (Chrome/Edge):** na stránce HA stiskněte **F12**, otevřete kartu **Network (Síť)**, zaškrtněte **Disable cache (Zakázat mezipaměť)** a stiskněte **Ctrl+Shift+R**. Vývojářské nástroje během obnovení ponechte otevřené. Tento postup obejde mezipaměť při načítání stránky; nemaže všechna uložená data prohlížeče.
 5. **Telefon s Androidem:** ukončete aplikaci Home Assistant. V nastavení telefonu otevřete **Aplikace → Home Assistant → Informace o aplikaci → Úložiště → Vymazat mezipaměť** a aplikaci znovu spusťte. Názvy položek se mohou podle telefonu lišit. Vyberte **mezipaměť (cache)**, nikoli **Vymazat data / Vymazat úložiště**, které resetuje data aplikace. Tento postup se týká Androidu, nikoli iPhonu.
 
-## Ukládání a jazyky
+---
+
+<a id="storage-languages"></a>
+
+## 🌍 Ukládání a jazyky
 
 Konfigurace se ukládá pro aktuálního uživatele do frontendových uživatelských dat Home Assistantu. Prohlížeč uchovává také záložní kopii v `localStorage`. Pokud je dostupná jen tato záloha, nastavení je omezené na daný prohlížeč. Nastavení editoru nemění oprávnění uživatelů.
 
@@ -124,13 +163,21 @@ Jazyk se přebírá z Home Assistantu. Podporovaných je **28 variant**:
 
 Arabština a hebrejština používají RTL rozložení. Pro nepodporovaný jazyk se použije angličtina. Po změně jazyka znovu otevřete editor.
 
-## Omezení
+---
+
+<a id="limitations"></a>
+
+## ⚠️ Omezení
 
 - Katalog ikon, vyhledávání a interní texty pickeru poskytuje HA. Názvy ikon a hledané výrazy nejsou překládány tímto projektem. Pokud nativní komponenta ještě není načtená, editor zobrazí upozornění a dočasné textové pole.
 - Přizpůsobení vzhledu využívá strukturu nativního frontendu. Změny komponent HA mohou ovlivnit kompatibilitu.
 - Při nedostupném uloženém pořadí nelze rekonstruovat pořadí skrytých dashboardů, pokud zdroj změnil jejich pořadí; zachová se dostupný zdroj.
 - Úpravy metadat dashboardu nemění jednotlivé Lovelace karty. Smazání dashboardu však odstraní celou jeho konfiguraci.
 
-## Vývoj
+---
+
+<a id="development"></a>
+
+## 🛠️ Vývoj
 
 Distribuce je jediný JS soubor. Překlady v `translations/` se do něj vkládají příkazem `node scripts/update-translations.cjs`. Regresní testy používají Playwright a modelové komponenty se simulovaným backendem; jejich úspěch není zárukou kompatibility se všemi verzemi HA. [Postup spuštění testů](regression-tests/README.md)
