@@ -1,12 +1,14 @@
 <a href="https://github.com/Vachler/HA-Nav-Manager/blob/main/README.md"><img src="https://img.shields.io/badge/🇬🇧%20English-a3e635?style=for-the-badge" alt="English" height="34"></a>
 <a href="https://github.com/Vachler/HA-Nav-Manager/blob/main/README-CZ.md"><img src="https://img.shields.io/badge/🇨🇿%20Čeština-2563eb?style=for-the-badge" alt="Čeština" height="34"></a>
 
+<img src="https://raw.githubusercontent.com/Vachler/HA-Nav-Manager/main/custom_components/ha_nav_manager/brand/icon.png" alt="HA Nav Manager" width="80" align="right">
+
 # HA Nav Manager
 
 
 Vizuální správce navigace pro **Home Assistant**. Upravujte horní lištu, boční panel a dashboardy v jednom rozhraní. Po instalaci nastavujete tlačítka, cíle a vzhled přímo v editoru.
 
-**Aktuální verze: 0.9.0** · **28 jazyků** · **Automatické načítání rozhraní**
+**Aktuální verze: 0.9.1** · **28 jazyků** · **Automatické načítání rozhraní**
 
 ## Obsah
 
@@ -166,3 +168,5 @@ Kliknutím otevřete celý obrázek. Prohlížeč jej přizpůsobí oknu; dalš�
 ## 🛠️ Vývoj
 
 Integrace obsahuje `custom_components/ha_nav_manager/frontend/ha-nav-manager.js`. Kořenový JS soubor zůstává pro vývoj a prohlížečové testy; před vydáním synchronizujte obě kopie. Překlady v `translations/` se do něj vkládají příkazem `node scripts/update-translations.cjs`. Regresní testy používají Playwright a modelové komponenty se simulovaným backendem; jejich úspěch není zárukou kompatibility se všemi verzemi HA. [Postup spuštění testů](https://github.com/Vachler/HA-Nav-Manager/blob/main/regression-tests/README.md)
+
+Zobrazení vlastní ikony integrace vyžaduje Home Assistant 2026.3 nebo novější.

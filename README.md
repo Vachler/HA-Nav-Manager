@@ -1,12 +1,14 @@
 <a href="https://github.com/Vachler/HA-Nav-Manager/blob/main/README.md"><img src="https://img.shields.io/badge/🇬🇧%20English-a3e635?style=for-the-badge" alt="English" height="34"></a>
 <a href="https://github.com/Vachler/HA-Nav-Manager/blob/main/README-CZ.md"><img src="https://img.shields.io/badge/🇨🇿%20Čeština-2563eb?style=for-the-badge" alt="Čeština" height="34"></a>
 
+<img src="https://raw.githubusercontent.com/Vachler/HA-Nav-Manager/main/custom_components/ha_nav_manager/brand/icon.png" alt="HA Nav Manager" width="80" align="right">
+
 # HA Nav Manager
 
 
 A visual navigation manager for **Home Assistant**. Customize the native toolbar, sidebar and dashboard metadata in one editor. Once installed, configure buttons, targets and appearance directly in the UI.
 
-**Current version: 0.9.0** · **28 languages** · **Automatic frontend loading**
+**Current version: 0.9.1** · **28 languages** · **Automatic frontend loading**
 
 ## Contents
 
@@ -166,3 +168,5 @@ Click a screenshot to open the full image. Your browser fits it to the window; c
 ## 🛠️ Development
 
 The integration bundles `custom_components/ha_nav_manager/frontend/ha-nav-manager.js`. The root JS file is retained for development and browser tests; synchronize both copies before publishing. Run `node scripts/update-translations.cjs` to embed the dictionaries from `translations/`. Regression tests use Playwright with model components and a simulated backend; passing them does not guarantee compatibility with every HA release. See the [test instructions](https://github.com/Vachler/HA-Nav-Manager/blob/main/regression-tests/README.md).
+
+Brand icon display requires Home Assistant 2026.3 or newer.
