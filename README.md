@@ -1,5 +1,5 @@
-<a href="README.md"><img src="https://img.shields.io/badge/🇬🇧%20English-a3e635?style=for-the-badge" alt="English" height="34"></a>
-<a href="README-CZ.md"><img src="https://img.shields.io/badge/🇨🇿%20Čeština-2563eb?style=for-the-badge" alt="Čeština" height="34"></a>
+<a href="https://github.com/Vachler/HA-Nav-Manager/blob/main/README.md"><img src="https://img.shields.io/badge/🇬🇧%20English-a3e635?style=for-the-badge" alt="English" height="34"></a>
+<a href="https://github.com/Vachler/HA-Nav-Manager/blob/main/README-CZ.md"><img src="https://img.shields.io/badge/🇨🇿%20Čeština-2563eb?style=for-the-badge" alt="Čeština" height="34"></a>
 
 # HA Nav Manager
 
@@ -10,14 +10,15 @@ A visual navigation manager for **Home Assistant**. Customize the native toolbar
 
 ## Contents
 
-- [Features](#features)
-- [Requirements](#requirements)
-- [Installation](#installation)
-- [Updating the file](#updates)
-- [If the manager does not appear](#troubleshooting)
-- [Storage and languages](#storage-languages)
-- [Limitations](#limitations)
-- [Development](#development)
+- [Features](https://github.com/Vachler/HA-Nav-Manager/blob/main/README.md#features)
+- [Requirements](https://github.com/Vachler/HA-Nav-Manager/blob/main/README.md#requirements)
+- [Installation](https://github.com/Vachler/HA-Nav-Manager/blob/main/README.md#installation)
+- [Updating the file](https://github.com/Vachler/HA-Nav-Manager/blob/main/README.md#updates)
+- [If the manager does not appear](https://github.com/Vachler/HA-Nav-Manager/blob/main/README.md#troubleshooting)
+- [Storage and languages](https://github.com/Vachler/HA-Nav-Manager/blob/main/README.md#storage-languages)
+- [Screenshots](https://github.com/Vachler/HA-Nav-Manager/blob/main/README.md#screenshots)
+- [Limitations](https://github.com/Vachler/HA-Nav-Manager/blob/main/README.md#limitations)
+- [Development](https://github.com/Vachler/HA-Nav-Manager/blob/main/README.md#development)
 
 ---
 
@@ -127,6 +128,28 @@ Arabic and Hebrew use RTL layout. Unsupported languages fall back to English. Re
 
 ---
 
+<a id="screenshots"></a>
+
+## 🖼️ Screenshots
+
+Click a screenshot to open the full image. Your browser fits it to the window; click it again to view its original size.
+
+**Toolbar and sidebar**
+
+<a href="https://raw.githubusercontent.com/Vachler/HA-Nav-Manager/main/screenshots/toolbar-sidebar.png"><img src="https://raw.githubusercontent.com/Vachler/HA-Nav-Manager/main/screenshots/toolbar-sidebar.png" alt="Toolbar and sidebar" width="100%"></a>
+
+<table>
+  <tr><th width="50%">Toolbar overview</th><th width="50%">Toolbar button settings</th></tr>
+  <tr><td valign="top"><a href="https://raw.githubusercontent.com/Vachler/HA-Nav-Manager/main/screenshots/toolbar.png"><img src="https://raw.githubusercontent.com/Vachler/HA-Nav-Manager/main/screenshots/toolbar.png" alt="Toolbar overview" width="100%"></a></td><td valign="top"><a href="https://raw.githubusercontent.com/Vachler/HA-Nav-Manager/main/screenshots/toolbar-settings.png"><img src="https://raw.githubusercontent.com/Vachler/HA-Nav-Manager/main/screenshots/toolbar-settings.png" alt="Toolbar button settings" width="100%"></a></td></tr>
+</table>
+
+<table>
+  <tr><th width="50%">Sidebar settings</th><th width="50%">Dashboard management</th></tr>
+  <tr><td valign="top"><a href="https://raw.githubusercontent.com/Vachler/HA-Nav-Manager/main/screenshots/sidebar.png"><img src="https://raw.githubusercontent.com/Vachler/HA-Nav-Manager/main/screenshots/sidebar.png" alt="Sidebar settings" width="100%"></a></td><td valign="top"><a href="https://raw.githubusercontent.com/Vachler/HA-Nav-Manager/main/screenshots/dashboards.png"><img src="https://raw.githubusercontent.com/Vachler/HA-Nav-Manager/main/screenshots/dashboards.png" alt="Dashboard management" width="100%"></a></td></tr>
+</table>
+
+---
+
 <a id="limitations"></a>
 
 ## ⚠️ Limitations
@@ -142,4 +165,4 @@ Arabic and Hebrew use RTL layout. Unsupported languages fall back to English. Re
 
 ## 🛠️ Development
 
-The integration bundles `custom_components/ha_nav_manager/frontend/ha-nav-manager.js`. The root JS file is retained for development and browser tests; synchronize both copies before publishing. Run `node scripts/update-translations.cjs` to embed the dictionaries from `translations/`. Regression tests use Playwright with model components and a simulated backend; passing them does not guarantee compatibility with every HA release. See the [test instructions](regression-tests/README.md).
+The integration bundles `custom_components/ha_nav_manager/frontend/ha-nav-manager.js`. The root JS file is retained for development and browser tests; synchronize both copies before publishing. Run `node scripts/update-translations.cjs` to embed the dictionaries from `translations/`. Regression tests use Playwright with model components and a simulated backend; passing them does not guarantee compatibility with every HA release. See the [test instructions](https://github.com/Vachler/HA-Nav-Manager/blob/main/regression-tests/README.md).

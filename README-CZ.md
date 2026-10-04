@@ -1,5 +1,5 @@
-<a href="README.md"><img src="https://img.shields.io/badge/🇬🇧%20English-a3e635?style=for-the-badge" alt="English" height="34"></a>
-<a href="README-CZ.md"><img src="https://img.shields.io/badge/🇨🇿%20Čeština-2563eb?style=for-the-badge" alt="Čeština" height="34"></a>
+<a href="https://github.com/Vachler/HA-Nav-Manager/blob/main/README.md"><img src="https://img.shields.io/badge/🇬🇧%20English-a3e635?style=for-the-badge" alt="English" height="34"></a>
+<a href="https://github.com/Vachler/HA-Nav-Manager/blob/main/README-CZ.md"><img src="https://img.shields.io/badge/🇨🇿%20Čeština-2563eb?style=for-the-badge" alt="Čeština" height="34"></a>
 
 # HA Nav Manager
 
@@ -10,14 +10,15 @@ Vizuální správce navigace pro **Home Assistant**. Upravujte horní lištu, bo
 
 ## Obsah
 
-- [Funkce](#features)
-- [Požadavky](#requirements)
-- [Instalace](#installation)
-- [Aktualizace souboru](#updates)
-- [Když se správce nezobrazuje](#troubleshooting)
-- [Ukládání a jazyky](#storage-languages)
-- [Omezení](#limitations)
-- [Vývoj](#development)
+- [Funkce](https://github.com/Vachler/HA-Nav-Manager/blob/main/README-CZ.md#features)
+- [Požadavky](https://github.com/Vachler/HA-Nav-Manager/blob/main/README-CZ.md#requirements)
+- [Instalace](https://github.com/Vachler/HA-Nav-Manager/blob/main/README-CZ.md#installation)
+- [Aktualizace souboru](https://github.com/Vachler/HA-Nav-Manager/blob/main/README-CZ.md#updates)
+- [Když se správce nezobrazuje](https://github.com/Vachler/HA-Nav-Manager/blob/main/README-CZ.md#troubleshooting)
+- [Ukládání a jazyky](https://github.com/Vachler/HA-Nav-Manager/blob/main/README-CZ.md#storage-languages)
+- [Obrázky](https://github.com/Vachler/HA-Nav-Manager/blob/main/README-CZ.md#screenshots)
+- [Omezení](https://github.com/Vachler/HA-Nav-Manager/blob/main/README-CZ.md#limitations)
+- [Vývoj](https://github.com/Vachler/HA-Nav-Manager/blob/main/README-CZ.md#development)
 
 ---
 
@@ -127,6 +128,28 @@ Arabština a hebrejština používají RTL rozložení. Pro nepodporovaný jazyk
 
 ---
 
+<a id="screenshots"></a>
+
+## 🖼️ Obrázky
+
+Kliknutím otevřete celý obrázek. Prohlížeč jej přizpůsobí oknu; dalším kliknutím zobrazíte původní velikost.
+
+**Horní a boční lišta**
+
+<a href="https://raw.githubusercontent.com/Vachler/HA-Nav-Manager/main/screenshots/toolbar-sidebar.png"><img src="https://raw.githubusercontent.com/Vachler/HA-Nav-Manager/main/screenshots/toolbar-sidebar.png" alt="Horní a boční lišta" width="100%"></a>
+
+<table>
+  <tr><th width="50%">Toolbar</th><th width="50%">Nastavení toolbaru</th></tr>
+  <tr><td valign="top"><a href="https://raw.githubusercontent.com/Vachler/HA-Nav-Manager/main/screenshots/toolbar.png"><img src="https://raw.githubusercontent.com/Vachler/HA-Nav-Manager/main/screenshots/toolbar.png" alt="Toolbar" width="100%"></a></td><td valign="top"><a href="https://raw.githubusercontent.com/Vachler/HA-Nav-Manager/main/screenshots/toolbar-settings.png"><img src="https://raw.githubusercontent.com/Vachler/HA-Nav-Manager/main/screenshots/toolbar-settings.png" alt="Nastavení toolbaru" width="100%"></a></td></tr>
+</table>
+
+<table>
+  <tr><th width="50%">Boční panel</th><th width="50%">Dashboardy</th></tr>
+  <tr><td valign="top"><a href="https://raw.githubusercontent.com/Vachler/HA-Nav-Manager/main/screenshots/sidebar.png"><img src="https://raw.githubusercontent.com/Vachler/HA-Nav-Manager/main/screenshots/sidebar.png" alt="Boční panel" width="100%"></a></td><td valign="top"><a href="https://raw.githubusercontent.com/Vachler/HA-Nav-Manager/main/screenshots/dashboards.png"><img src="https://raw.githubusercontent.com/Vachler/HA-Nav-Manager/main/screenshots/dashboards.png" alt="Dashboardy" width="100%"></a></td></tr>
+</table>
+
+---
+
 <a id="limitations"></a>
 
 ## ⚠️ Omezení
@@ -142,4 +165,4 @@ Arabština a hebrejština používají RTL rozložení. Pro nepodporovaný jazyk
 
 ## 🛠️ Vývoj
 
-Integrace obsahuje `custom_components/ha_nav_manager/frontend/ha-nav-manager.js`. Kořenový JS soubor zůstává pro vývoj a prohlížečové testy; před vydáním synchronizujte obě kopie. Překlady v `translations/` se do něj vkládají příkazem `node scripts/update-translations.cjs`. Regresní testy používají Playwright a modelové komponenty se simulovaným backendem; jejich úspěch není zárukou kompatibility se všemi verzemi HA. [Postup spuštění testů](regression-tests/README.md)
+Integrace obsahuje `custom_components/ha_nav_manager/frontend/ha-nav-manager.js`. Kořenový JS soubor zůstává pro vývoj a prohlížečové testy; před vydáním synchronizujte obě kopie. Překlady v `translations/` se do něj vkládají příkazem `node scripts/update-translations.cjs`. Regresní testy používají Playwright a modelové komponenty se simulovaným backendem; jejich úspěch není zárukou kompatibility se všemi verzemi HA. [Postup spuštění testů](https://github.com/Vachler/HA-Nav-Manager/blob/main/regression-tests/README.md)
