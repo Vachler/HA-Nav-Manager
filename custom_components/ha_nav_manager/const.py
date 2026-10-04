@@ -1,5 +1,5 @@
 """Constants for HA Nav Manager."""
 DOMAIN = "ha_nav_manager"
-VERSION = "0.9.0"
+VERSION = "0.9.1"
 FRONTEND_PATH = "/ha_nav_manager/ha-nav-manager.js"
 MODULE_URL = f"{FRONTEND_PATH}?v={VERSION}"

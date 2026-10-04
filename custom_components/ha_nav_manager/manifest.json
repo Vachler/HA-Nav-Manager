@@ -1,7 +1,7 @@
 {
   "domain": "ha_nav_manager",
   "name": "HA Nav Manager",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "codeowners": [
     "@Vachler"
   ],
