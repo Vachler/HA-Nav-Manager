@@ -1,0 +1,14 @@
+{
+  "title": "HA Nav Manager",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Zapnout HA Nav Manager",
+        "description": "Automaticky načítat editor horní lišty, bočního panelu a dashboardů. Není potřeba upravovat YAML ani zdroje dashboardů. Po přidání obnovte nebo znovu otevřete Home Assistant."
+      }
+    },
+    "abort": {
+      "already_configured": "HA Nav Manager je již nastaven."
+    }
+  }
+}

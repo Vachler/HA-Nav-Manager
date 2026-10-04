@@ -1,0 +1,14 @@
+{
+  "title": "HA Nav Manager",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Enable HA Nav Manager",
+        "description": "Automatically load the navigation editor for the toolbar, sidebar and dashboards. No YAML or dashboard resources are required. Reopen or refresh Home Assistant after setup."
+      }
+    },
+    "abort": {
+      "already_configured": "HA Nav Manager is already configured."
+    }
+  }
+}
