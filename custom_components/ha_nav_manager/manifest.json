@@ -1,0 +1,18 @@
+{
+  "domain": "ha_nav_manager",
+  "name": "HA Nav Manager",
+  "version": "0.9.0",
+  "codeowners": [
+    "@Vachler"
+  ],
+  "config_flow": true,
+  "dependencies": [
+    "frontend",
+    "http"
+  ],
+  "documentation": "https://github.com/Vachler/HA-Nav-Manager",
+  "issue_tracker": "https://github.com/Vachler/HA-Nav-Manager/issues",
+  "integration_type": "service",
+  "iot_class": "local_push",
+  "requirements": []
+}
