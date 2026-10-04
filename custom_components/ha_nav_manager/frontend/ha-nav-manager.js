@@ -1,7 +1,7 @@
 
 /*
  * HA Nav Manager for Home Assistant
- * Lifecycle-driven runtime 0.9.0
+ * Lifecycle-driven runtime 0.9.1
  * Visual editor for the native Home Assistant toolbar, sidebar and dashboards.
  *
  * Configuration is stored per HA user through frontend user_data when available.
@@ -10,7 +10,7 @@
 (() => {
   "use strict";
 
-  const VERSION = "0.9.0";
+  const VERSION = "0.9.1";
   if (window.toolbarManager?.version) {
     console.warn("[HA Nav Manager] Resource already loaded; keep only one resource entry.");
     return;
