@@ -27,3 +27,6 @@ node scripts/update-translations.cjs
 ```
 
 The generator embeds the dictionaries into the standalone `ha-nav-manager.js`. Users install only that file.
+## Integration loader
+
+Run `python regression-tests/integration-loader.py` to check static-file registration, enable/unload/re-enable, confirmation without credentials, duplicate setup prevention and package consistency using simulated Home Assistant APIs. These tests do not replace installation testing in a running Home Assistant instance.
