@@ -70,6 +70,31 @@ Instaluje se pouze **[ha-nav-manager.js](ha-nav-manager.js)**. Není potřeba se
 
 ## 📦 Instalace
 
+### Instalace přes HACS (doporučeno)
+
+[![Otevřít Home Assistant a přidat HA Nav Manager do HACS](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=Vachler&repository=HA-Nav-Manager&category=plugin)
+
+Ve vašem Home Assistantu musí být již nainstalovaný HACS. Tlačítko přidá projekt jako **vlastní repozitář**; projekt není součástí výchozího katalogu HACS.
+
+1. Klikněte na tlačítko, potvrďte adresu svého Home Assistantu a přidejte repozitář. Případně otevřete **HACS → ⋮ → Vlastní repozitáře**, zadejte `https://github.com/Vachler/HA-Nav-Manager` a vyberte typ **Dashboard** (ve starších verzích **Lovelace** nebo **Plugin**).
+2. V HACS vyhledejte **HA Nav Manager** a stáhněte jej. HACS uloží `ha-nav-manager.js` do `/config/www/community/HA-Nav-Manager/`.
+3. Do **existující** sekce `frontend` → `extra_module_url` v `configuration.yaml` přidejte následující adresu. Zachovejte ostatní moduly a nastavení; nevytvářejte druhou sekci `frontend`.
+
+```yaml
+frontend:
+  extra_module_url:
+    - /hacsfiles/HA-Nav-Manager/ha-nav-manager.js
+```
+
+4. V **Nastavení → Dashboardy → ⋮ → Zdroje** odeberte pouze záznam HA Nav Manageru automaticky přidaný HACS, pokud existuje (jeho URL začíná `/hacsfiles/HA-Nav-Manager/ha-nav-manager.js` a může obsahovat `?hacstag=...`). Stažený soubor i zápis v `extra_module_url` ponechte. Správce se načítá globálně přes `frontend`, nikoli jako zdroj dashboardu. Zdroje zkontrolujte také po aktualizaci přes HACS, která může záznam znovu vytvořit.
+5. Při přechodu z ruční instalace nahraďte původní `/local/ha-nav-manager.js` adresou z HACS; načítejte jen jednu kopii.
+6. Zkontrolujte konfiguraci, **restartujte službu Home Assistant** a obnovte prohlížeč pomocí **Ctrl+F5**. Přihlaste se jako správce a v menu horní lišty **⋮** otevřete **HA Nav Manager**.
+
+Název složky `HA-Nav-Manager` rozlišuje velikost písmen. Další aktualizace souboru spravuje HACS; počáteční úprava YAML je stále nutná.
+
+### Ruční instalace
+
+
 ### 1. Nahrajte soubor
 
 Stáhněte `ha-nav-manager.js` tlačítkem **Download raw file** na GitHubu a uložte ho do složky `www` vedle používaného `configuration.yaml`:
@@ -131,6 +156,10 @@ Editor má záložky pro horní lištu, boční panel a dashboardy. Změny tlač
 
 ## 🔄 Aktualizace souboru
 
+**Instalace přes HACS:** aktualizujte HA Nav Manager v HACS, zkontrolujte odstranění automaticky přidaného zdroje dashboardu podle postupu výše a obnovte prohlížeč nebo znovu otevřete mobilní aplikaci. Pouhá aktualizace JS souboru nevyžaduje restart Home Assistantu. V `extra_module_url` ponechte adresu `/hacsfiles/HA-Nav-Manager/ha-nav-manager.js`.
+
+**Ruční instalace:**
+
 1. Stáhněte aktuální `ha-nav-manager.js` a nahraďte jím soubor ve složce `www`.
 2. Zachovejte stejný název souboru. Odkaz `/local/ha-nav-manager.js` v `configuration.yaml` pod `frontend` → `extra_module_url` pak nemusíte měnit.
 3. V prohlížeči obnovte stránku Home Assistantu klávesou **F5**. Na mobilním telefonu ukončete aplikaci Home Assistant a znovu ji otevřete.
@@ -142,6 +171,8 @@ Při pouhé výměně JS souboru není potřeba restartovat Home Assistant. Poku
 <a id="troubleshooting"></a>
 
 ## 🩺 Když se správce nezobrazuje
+
+**Při instalaci přes HACS** použijte pro kontrolu YAML a adresy v prohlížeči níže `/hacsfiles/HA-Nav-Manager/ha-nav-manager.js`. Soubor je ve složce `www/community/HA-Nav-Manager/`. Příklady `/local/ha-nav-manager.js` níže platí pro ruční instalaci.
 
 1. V editoru souborů otevřete používaný `configuration.yaml` (například `/homeassistant/configuration.yaml`). V sekci `frontend` → `extra_module_url` zkontrolujte odkaz `/local/ha-nav-manager.js`. Název musí přesně odpovídat souboru `ha-nav-manager.js` ve složce `www`, včetně velikosti písmen.
 2. Do adresního řádku prohlížeče zadejte adresu svého HA a připojte `/local/ha-nav-manager.js`, například `http://193.165.1.10:8123/local/ha-nav-manager.js`. Použijte svůj protokol, adresu a port. Musí se zobrazit JavaScript, nikoli chyba 404 nebo stránka GitHubu.

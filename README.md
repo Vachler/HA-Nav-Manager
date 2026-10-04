@@ -70,6 +70,31 @@ Install only **[ha-nav-manager.js](ha-nav-manager.js)**. No build step or Python
 
 ## 📦 Installation
 
+### Install with HACS (recommended)
+
+[![Open your Home Assistant instance and add HA Nav Manager to HACS](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=Vachler&repository=HA-Nav-Manager&category=plugin)
+
+HACS must already be installed in your Home Assistant instance. The button adds this project as a **custom repository**; it is not included in the default HACS catalog.
+
+1. Click the button, confirm your Home Assistant address and add the repository. Alternatively, open **HACS → ⋮ → Custom repositories**, enter `https://github.com/Vachler/HA-Nav-Manager` and select **Dashboard** (called **Lovelace** or **Plugin** in older versions).
+2. Find **HA Nav Manager** in HACS and download it. HACS installs `ha-nav-manager.js` in `/config/www/community/HA-Nav-Manager/`.
+3. Add the following URL to the **existing** `frontend` → `extra_module_url` section of `configuration.yaml`. Preserve other modules and settings; do not create another `frontend` section.
+
+```yaml
+frontend:
+  extra_module_url:
+    - /hacsfiles/HA-Nav-Manager/ha-nav-manager.js
+```
+
+4. Under **Settings → Dashboards → ⋮ → Resources**, remove only the HA Nav Manager entry automatically added by HACS, if present (its URL starts with `/hacsfiles/HA-Nav-Manager/ha-nav-manager.js` and may include `?hacstag=...`). Keep the downloaded file and the `extra_module_url` entry. This manager loads globally through `frontend`, rather than as a dashboard resource. Check again after a HACS update, which may recreate that entry.
+5. If switching from manual installation, replace the old `/local/ha-nav-manager.js` entry with the HACS URL; load only one copy.
+6. Check the configuration, **restart the Home Assistant service**, then refresh the browser with **Ctrl+F5**. Sign in as an administrator and select **HA Nav Manager** from the toolbar’s **⋮** menu.
+
+The directory name `HA-Nav-Manager` is case-sensitive. HACS manages future file updates; the initial YAML configuration remains necessary.
+
+### Manual installation
+
+
 ### 1. Upload the file
 
 Download `ha-nav-manager.js` using GitHub’s **Download raw file** button. Put it in the `www` directory next to the active `configuration.yaml`:
@@ -131,6 +156,10 @@ The editor has tabs for the toolbar, sidebar and dashboards. Confirm toolbar and
 
 ## 🔄 Updating the file
 
+**HACS installation:** update HA Nav Manager in HACS, check that its automatically added dashboard resource is removed as described above, then refresh the browser or reopen the mobile app. Replacing only the JS file does not require a Home Assistant restart. Keep the `/hacsfiles/HA-Nav-Manager/ha-nav-manager.js` URL in `extra_module_url`.
+
+**Manual installation:**
+
 1. Download the current `ha-nav-manager.js` and replace the file in the `www` directory.
 2. Keep the same filename. You then do not need to change `/local/ha-nav-manager.js` under `frontend` → `extra_module_url` in `configuration.yaml`.
 3. In your browser, refresh the Home Assistant page with **F5**. On your phone, close the Home Assistant app and reopen it.
@@ -142,6 +171,8 @@ Replacing only the JS file does not require a Home Assistant restart. If you cha
 <a id="troubleshooting"></a>
 
 ## 🩺 If the manager does not appear
+
+**For HACS installations**, use `/hacsfiles/HA-Nav-Manager/ha-nav-manager.js` for the YAML and browser URL checks below. The file is in `www/community/HA-Nav-Manager/`. The `/local/ha-nav-manager.js` examples below refer to manual installation.
 
 1. In your file editor, open the active `configuration.yaml` (for example `/homeassistant/configuration.yaml`). Under `frontend` → `extra_module_url`, check the URL `/local/ha-nav-manager.js`. Its filename must exactly match `ha-nav-manager.js` in the `www` directory, including letter case.
 2. In your browser’s address bar, enter your HA address followed by `/local/ha-nav-manager.js`, for example `http://193.165.1.10:8123/local/ha-nav-manager.js`. Use your own protocol, address and port. It should display JavaScript, not a 404 error or a GitHub page.
