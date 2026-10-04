@@ -28,3 +28,6 @@ let source = fs.readFileSync(file, 'utf8');
 const pattern = /  \/\/ BEGIN GENERATED MANAGER TRANSLATIONS[\s\S]*?  \/\/ END GENERATED MANAGER TRANSLATIONS/;
 source = pattern.test(source) ? source.replace(pattern, () => output) : source.replace('  const RTL_LANGS', output + '\n\n  const RTL_LANGS');
 fs.writeFileSync(file, source);
+
+// Keep the integration bundle synchronized with the development distribution.
+fs.copyFileSync(file, path.join(root, "custom_components/ha_nav_manager/frontend/ha-nav-manager.js"));
