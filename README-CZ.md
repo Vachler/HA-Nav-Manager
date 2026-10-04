@@ -6,7 +6,7 @@
 
 Vizuální správce navigace pro **Home Assistant**. Upravujte horní lištu, boční panel a dashboardy v jednom rozhraní. Po instalaci nastavujete tlačítka, cíle a vzhled přímo v editoru.
 
-**Aktuální verze: 0.8.3** · **28 jazyků** · **Jediný JavaScript soubor**
+**Aktuální verze: 0.9.0** · **28 jazyků** · **Automatické načítání rozhraní**
 
 ## Obsah
 
@@ -60,9 +60,7 @@ Správce přebírá nativní uživatelské pořadí. Ruční pořadí výslovně
 
 ## 🧩 Požadavky
 
-Home Assistant s přístupem ke konfigurační složce a účet správce pro editor a správu dashboardů.
-
-Instaluje se pouze **[ha-nav-manager.js](ha-nav-manager.js)**. Není potřeba sestavení projektu ani instalace Python integrace.
+Home Assistant **2024.7 nebo novější**, HACS pro doporučený způsob instalace a účet správce pro přidání integrace i editor. Kompatibilita se všemi verzemi rozhraní HA nebyla ověřena.
 
 ---
 
@@ -72,83 +70,23 @@ Instaluje se pouze **[ha-nav-manager.js](ha-nav-manager.js)**. Není potřeba se
 
 ### Instalace přes HACS (doporučeno)
 
-[![Otevřít Home Assistant a přidat HA Nav Manager do HACS](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=Vachler&repository=HA-Nav-Manager&category=plugin)
+[![Otevřít Home Assistant a přidat HA Nav Manager do HACS](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=Vachler&repository=HA-Nav-Manager&category=integration)
 
-Ve vašem Home Assistantu musí být již nainstalovaný HACS. Tlačítko přidá projekt jako **vlastní repozitář**; projekt není součástí výchozího katalogu HACS.
+1. S již nainstalovaným HACS klikněte na tlačítko a přidejte tento **vlastní repozitář**. Případně otevřete **HACS → ⋮ → Vlastní repozitáře**, zadejte `https://github.com/Vachler/HA-Nav-Manager` a zvolte **Integrace**.
+2. V HACS stáhněte **HA Nav Manager**.
+3. **Restartujte Home Assistant**.
+4. Otevřete **Nastavení → Zařízení a služby → Přidat integraci**, vyhledejte **HA Nav Manager** a potvrďte přidání. Žádná konfigurační pole se nevyplňují.
+5. Obnovte prohlížeč nebo znovu otevřete Companion App. Přihlaste se jako správce, otevřete dashboard a v menu horní lišty **⋮** vyberte **HA Nav Manager**.
 
-1. Klikněte na tlačítko, potvrďte adresu svého Home Assistantu a přidejte repozitář. Případně otevřete **HACS → ⋮ → Vlastní repozitáře**, zadejte `https://github.com/Vachler/HA-Nav-Manager` a vyberte typ **Dashboard** (ve starších verzích **Lovelace** nebo **Plugin**).
-2. V HACS vyhledejte **HA Nav Manager** a stáhněte jej. HACS uloží `ha-nav-manager.js` do `/config/www/community/HA-Nav-Manager/`.
-3. Do **existující** sekce `frontend` → `extra_module_url` v `configuration.yaml` přidejte následující adresu. Zachovejte ostatní moduly a nastavení; nevytvářejte druhou sekci `frontend`.
+**Není potřeba upravovat `configuration.yaml`, zdroje dashboardů ani složku `www`.** Integrace sama zpřístupní a globálně načte přibalený JavaScript. HACS ji instaluje jako integraci, takže nepřidává zdroj dashboardu. Projekt není součástí výchozího katalogu HACS.
 
-```yaml
-frontend:
-  extra_module_url:
-    - /hacsfiles/HA-Nav-Manager/ha-nav-manager.js
-```
+### Ruční instalace bez HACS
 
-4. V **Nastavení → Dashboardy → ⋮ → Zdroje** odeberte pouze záznam HA Nav Manageru automaticky přidaný HACS, pokud existuje (jeho URL začíná `/hacsfiles/HA-Nav-Manager/ha-nav-manager.js` a může obsahovat `?hacstag=...`). Stažený soubor i zápis v `extra_module_url` ponechte. Správce se načítá globálně přes `frontend`, nikoli jako zdroj dashboardu. Zdroje zkontrolujte také po aktualizaci přes HACS, která může záznam znovu vytvořit.
-5. Při přechodu z ruční instalace nahraďte původní `/local/ha-nav-manager.js` adresou z HACS; načítejte jen jednu kopii.
-6. Zkontrolujte konfiguraci, **restartujte službu Home Assistant** a obnovte prohlížeč pomocí **Ctrl+F5**. Přihlaste se jako správce a v menu horní lišty **⋮** otevřete **HA Nav Manager**.
+Z tohoto repozitáře zkopírujte celou složku `custom_components/ha_nav_manager` do `/config/custom_components/ha_nav_manager/`, včetně podsložek `frontend` a `translations`. Poté pokračujte kroky 3–5 výše. Samotný JavaScript v kořeni repozitáře není instalací integrace.
 
-Název složky `HA-Nav-Manager` rozlišuje velikost písmen. Další aktualizace souboru spravuje HACS; počáteční úprava YAML je stále nutná.
+### Otevření editoru
 
-### Ruční instalace
-
-
-### 1. Nahrajte soubor
-
-Stáhněte `ha-nav-manager.js` tlačítkem **Download raw file** na GitHubu a uložte ho do složky `www` vedle používaného `configuration.yaml`:
-
-```text
-/config/www/ha-nav-manager.js
-```
-
-Některé editory zobrazují tuto konfigurační složku jako `/homeassistant`. V takovém případě je cesta:
-
-```text
-/homeassistant/www/ha-nav-manager.js
-```
-
-Pokud složka `www` chybí, vytvořte ji. Soubor musí mít příponu `.js`, nikoli `.js.txt`. Obsah `www` je dostupný přes `/local/`. [Dokumentace HA](https://www.home-assistant.io/integrations/http/#hosting-files)
-
-### 2. Upravte configuration.yaml
-
-Do **existující** sekce `frontend` přidejte modul:
-
-```yaml
-frontend:
-  extra_module_url:
-    - /local/ha-nav-manager.js
-```
-
-Pokud už používáte motivy, může sekce vypadat takto:
-
-```yaml
-frontend:
-  themes: !include_dir_merge_named themes
-  extra_module_url:
-    - /local/ha-nav-manager.js
-```
-
-Řádek `themes` přidávejte jen tehdy, pokud máte odpovídající složku s motivy. Zachovejte ostatní nastavení i moduly a nevytvářejte druhou sekci `frontend`. Je-li sekce načítaná přes `!include`, upravte příslušný zahrnutý soubor.
-
-`extra_module_url` zajistí globální načtení při otevření frontendu. [Dokumentace HA](https://www.home-assistant.io/integrations/frontend/#loading-extra-javascript)
-
-Skript se načítá pouze přes `configuration.yaml`. Do zdrojů dashboardů jej nepřidávejte. Pokud tam už jeho registraci máte, odeberte pouze tento záznam; soubor ve `www` a zápis v YAML ponechte.
-
-### 3. Restartujte Home Assistant
-
-Uložte YAML a zkontrolujte konfiguraci. V **Nastavení → Systém** otevřete nabídku restartování a zvolte **Restartovat Home Assistant**.
-
-**Je nutný restart služby Home Assistant. Zavření okna prohlížeče, obnovení stránky ani samotné načtení motivů změnu neaktivuje. Restart celého hostitelského počítače není potřeba.**
-
-Po dokončení restartu obnovte stránku pomocí **Ctrl+F5**, případně znovu načtěte frontend v Companion App.
-
-### 4. Otevřete editor
-
-Přihlaste se jako správce a otevřete dashboard. V menu horní lišty **⋮** vyberte **HA Nav Manager**. Pokud nativní menu není dostupné, správce používá náhradní tlačítko nastavení u lišty.
-
-Editor má záložky pro horní lištu, boční panel a dashboardy. Změny tlačítek a sidebaru potvrďte tlačítkem **Uložit**. Vytvoření, aktualizace a smazání dashboardu se provedou samostatnými tlačítky přímo v jeho formuláři.
+Editor má záložky pro horní lištu, boční panel a dashboardy. Změny lišty a sidebaru potvrďte tlačítkem **Uložit**. Vytváření, aktualizace a mazání dashboardů mají vlastní tlačítka. Pokud není dostupné nativní menu, u lišty se zobrazí náhradní tlačítko nastavení.
 
 ---
 
@@ -156,15 +94,9 @@ Editor má záložky pro horní lištu, boční panel a dashboardy. Změny tlač
 
 ## 🔄 Aktualizace souboru
 
-**Instalace přes HACS:** aktualizujte HA Nav Manager v HACS, zkontrolujte odstranění automaticky přidaného zdroje dashboardu podle postupu výše a obnovte prohlížeč nebo znovu otevřete mobilní aplikaci. Pouhá aktualizace JS souboru nevyžaduje restart Home Assistantu. V `extra_module_url` ponechte adresu `/hacsfiles/HA-Nav-Manager/ha-nav-manager.js`.
+Aktualizujte **HA Nav Manager** v HACS, restartujte Home Assistant a obnovte prohlížeč nebo znovu otevřete Companion App. Uložená nastavení editoru zůstávají zachovaná. Při ruční instalaci před restartem nahraďte celou složku integrace.
 
-**Ruční instalace:**
-
-1. Stáhněte aktuální `ha-nav-manager.js` a nahraďte jím soubor ve složce `www`.
-2. Zachovejte stejný název souboru. Odkaz `/local/ha-nav-manager.js` v `configuration.yaml` pod `frontend` → `extra_module_url` pak nemusíte měnit.
-3. V prohlížeči obnovte stránku Home Assistantu klávesou **F5**. Na mobilním telefonu ukončete aplikaci Home Assistant a znovu ji otevřete.
-
-Při pouhé výměně JS souboru není potřeba restartovat Home Assistant. Pokud změníte název souboru nebo jeho cestu, upravte také odkaz v `configuration.yaml` a restartujte službu Home Assistant. Nastavení správce zůstává zachované.
+Integraci lze vypnout nebo odstranit v **Nastavení → Zařízení a služby**. Poté obnovte všechna otevřená okna HA nebo aplikace, aby přestaly používat již načtený JavaScript. Uživatelská nastavení editoru se tím nemažou.
 
 ---
 
@@ -172,13 +104,12 @@ Při pouhé výměně JS souboru není potřeba restartovat Home Assistant. Poku
 
 ## 🩺 Když se správce nezobrazuje
 
-**Při instalaci přes HACS** použijte pro kontrolu YAML a adresy v prohlížeči níže `/hacsfiles/HA-Nav-Manager/ha-nav-manager.js`. Soubor je ve složce `www/community/HA-Nav-Manager/`. Příklady `/local/ha-nav-manager.js` níže platí pro ruční instalaci.
-
-1. V editoru souborů otevřete používaný `configuration.yaml` (například `/homeassistant/configuration.yaml`). V sekci `frontend` → `extra_module_url` zkontrolujte odkaz `/local/ha-nav-manager.js`. Název musí přesně odpovídat souboru `ha-nav-manager.js` ve složce `www`, včetně velikosti písmen.
-2. Do adresního řádku prohlížeče zadejte adresu svého HA a připojte `/local/ha-nav-manager.js`, například `http://193.165.1.10:8123/local/ha-nav-manager.js`. Použijte svůj protokol, adresu a port. Musí se zobrazit JavaScript, nikoli chyba 404 nebo stránka GitHubu.
-3. Po změně YAML restartujte **službu Home Assistant**.
-4. **Počítač – načtení bez mezipaměti (Chrome/Edge):** na stránce HA stiskněte **F12**, otevřete kartu **Network (Síť)**, zaškrtněte **Disable cache (Zakázat mezipaměť)** a stiskněte **Ctrl+Shift+R**. Vývojářské nástroje během obnovení ponechte otevřené. Tento postup obejde mezipaměť při načítání stránky; nemaže všechna uložená data prohlížeče.
-5. **Telefon s Androidem:** ukončete aplikaci Home Assistant. V nastavení telefonu otevřete **Aplikace → Home Assistant → Informace o aplikaci → Úložiště → Vymazat mezipaměť** a aplikaci znovu spusťte. Názvy položek se mohou podle telefonu lišit. Vyberte **mezipaměť (cache)**, nikoli **Vymazat data / Vymazat úložiště**, které resetuje data aplikace. Tento postup se týká Androidu, nikoli iPhonu.
+| Problém | Co zkontrolovat |
+| --- | --- |
+| Integrace není v seznamu | V HACS byla stažena jako **Integrace** a následoval restart HA. Při ruční instalaci ověřte `/config/custom_components/ha_nav_manager/manifest.json`. |
+| Editor chybí | Přidejte **HA Nav Manager** v Zařízení a služby, přihlaste se jako správce, obnovte HA a otevřete dashboard. |
+| Zobrazuje se staré rozhraní | Po aktualizaci restartujte HA a použijte **Ctrl+F5** nebo znovu otevřete mobilní aplikaci. |
+| Přidání integrace selže | Zkontrolujte protokoly HA pro `ha_nav_manager` a při hlášení chyby uveďte verzi HA. |
 
 ---
 
@@ -211,4 +142,4 @@ Arabština a hebrejština používají RTL rozložení. Pro nepodporovaný jazyk
 
 ## 🛠️ Vývoj
 
-Distribuce je jediný JS soubor. Překlady v `translations/` se do něj vkládají příkazem `node scripts/update-translations.cjs`. Regresní testy používají Playwright a modelové komponenty se simulovaným backendem; jejich úspěch není zárukou kompatibility se všemi verzemi HA. [Postup spuštění testů](regression-tests/README.md)
+Integrace obsahuje `custom_components/ha_nav_manager/frontend/ha-nav-manager.js`. Kořenový JS soubor zůstává pro vývoj a prohlížečové testy; před vydáním synchronizujte obě kopie. Překlady v `translations/` se do něj vkládají příkazem `node scripts/update-translations.cjs`. Regresní testy používají Playwright a modelové komponenty se simulovaným backendem; jejich úspěch není zárukou kompatibility se všemi verzemi HA. [Postup spuštění testů](regression-tests/README.md)

@@ -6,7 +6,7 @@
 
 A visual navigation manager for **Home Assistant**. Customize the native toolbar, sidebar and dashboard metadata in one editor. Once installed, configure buttons, targets and appearance directly in the UI.
 
-**Current version: 0.8.3** · **28 languages** · **Single JavaScript file**
+**Current version: 0.9.0** · **28 languages** · **Automatic frontend loading**
 
 ## Contents
 
@@ -60,9 +60,7 @@ The manager follows native user ordering. Manual ordering explicitly saved in HA
 
 ## 🧩 Requirements
 
-Home Assistant with access to its configuration directory and an administrator account for the editor and dashboard management.
-
-Install only **[ha-nav-manager.js](ha-nav-manager.js)**. No build step or Python integration is required.
+Home Assistant **2024.7 or newer**, HACS for the recommended installation method, and an administrator account for setup and the editor. Compatibility with every HA frontend version has not been verified.
 
 ---
 
@@ -72,83 +70,23 @@ Install only **[ha-nav-manager.js](ha-nav-manager.js)**. No build step or Python
 
 ### Install with HACS (recommended)
 
-[![Open your Home Assistant instance and add HA Nav Manager to HACS](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=Vachler&repository=HA-Nav-Manager&category=plugin)
+[![Open your Home Assistant instance and add HA Nav Manager to HACS](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=Vachler&repository=HA-Nav-Manager&category=integration)
 
-HACS must already be installed in your Home Assistant instance. The button adds this project as a **custom repository**; it is not included in the default HACS catalog.
+1. With HACS already installed, click the button to add this **custom repository**. Alternatively, open **HACS → ⋮ → Custom repositories**, enter `https://github.com/Vachler/HA-Nav-Manager` and choose **Integration**.
+2. Download **HA Nav Manager** in HACS.
+3. **Restart Home Assistant**.
+4. Open **Settings → Devices & services → Add integration**, search for **HA Nav Manager** and confirm setup. No configuration fields are required.
+5. Refresh the browser or reopen the Companion App. Sign in as an administrator, open a dashboard and select **HA Nav Manager** in the toolbar’s **⋮** menu.
 
-1. Click the button, confirm your Home Assistant address and add the repository. Alternatively, open **HACS → ⋮ → Custom repositories**, enter `https://github.com/Vachler/HA-Nav-Manager` and select **Dashboard** (called **Lovelace** or **Plugin** in older versions).
-2. Find **HA Nav Manager** in HACS and download it. HACS installs `ha-nav-manager.js` in `/config/www/community/HA-Nav-Manager/`.
-3. Add the following URL to the **existing** `frontend` → `extra_module_url` section of `configuration.yaml`. Preserve other modules and settings; do not create another `frontend` section.
+**No changes to `configuration.yaml`, dashboard resources or the `www` folder are required.** The integration automatically serves and loads its bundled JavaScript throughout the frontend. HACS installs it as an integration, so it does not add a dashboard resource. The project is not part of the default HACS catalog.
 
-```yaml
-frontend:
-  extra_module_url:
-    - /hacsfiles/HA-Nav-Manager/ha-nav-manager.js
-```
+### Manual installation without HACS
 
-4. Under **Settings → Dashboards → ⋮ → Resources**, remove only the HA Nav Manager entry automatically added by HACS, if present (its URL starts with `/hacsfiles/HA-Nav-Manager/ha-nav-manager.js` and may include `?hacstag=...`). Keep the downloaded file and the `extra_module_url` entry. This manager loads globally through `frontend`, rather than as a dashboard resource. Check again after a HACS update, which may recreate that entry.
-5. If switching from manual installation, replace the old `/local/ha-nav-manager.js` entry with the HACS URL; load only one copy.
-6. Check the configuration, **restart the Home Assistant service**, then refresh the browser with **Ctrl+F5**. Sign in as an administrator and select **HA Nav Manager** from the toolbar’s **⋮** menu.
+Copy the complete `custom_components/ha_nav_manager` directory from this repository into `/config/custom_components/ha_nav_manager/`, including its `frontend` and `translations` subdirectories. Then follow steps 3–5 above. Installing the root JavaScript file alone is not the integration installation method.
 
-The directory name `HA-Nav-Manager` is case-sensitive. HACS manages future file updates; the initial YAML configuration remains necessary.
+### Open the editor
 
-### Manual installation
-
-
-### 1. Upload the file
-
-Download `ha-nav-manager.js` using GitHub’s **Download raw file** button. Put it in the `www` directory next to the active `configuration.yaml`:
-
-```text
-/config/www/ha-nav-manager.js
-```
-
-Some editors expose that configuration directory as `/homeassistant`. In that case the path is:
-
-```text
-/homeassistant/www/ha-nav-manager.js
-```
-
-Create `www` if it does not exist. Keep the `.js` extension; the file must not be named `.js.txt`. HA serves `www` files through `/local/`. [HA documentation](https://www.home-assistant.io/integrations/http/#hosting-files)
-
-### 2. Edit configuration.yaml
-
-Add the module to the **existing** `frontend` section:
-
-```yaml
-frontend:
-  extra_module_url:
-    - /local/ha-nav-manager.js
-```
-
-If you already use themes, the section may look like this:
-
-```yaml
-frontend:
-  themes: !include_dir_merge_named themes
-  extra_module_url:
-    - /local/ha-nav-manager.js
-```
-
-Include the `themes` line only if you have the corresponding themes directory. Preserve your other settings and modules. Do not create a second `frontend` section. If that section uses `!include`, edit the referenced file instead.
-
-`extra_module_url` loads the module globally when the frontend opens. [HA documentation](https://www.home-assistant.io/integrations/frontend/#loading-extra-javascript)
-
-Load the script only through `configuration.yaml`. Do not add it to dashboard resources. If it is already registered there, remove only that entry; keep the file in `www` and its YAML entry.
-
-### 3. Restart Home Assistant
-
-Save the YAML and check your configuration. Under **Settings → System**, open the restart menu and choose **Restart Home Assistant**.
-
-**Restart the Home Assistant service itself. Closing the browser, refreshing a page or reloading themes does not activate the change. Rebooting the host computer is not required.**
-
-Once the restart completes, refresh the browser with **Ctrl+F5**, or reload the frontend in the Companion App.
-
-### 4. Open the editor
-
-Sign in as an administrator and open a dashboard. Select **HA Nav Manager** from the toolbar’s **⋮** menu. Where that native menu is unavailable, the manager uses a fallback settings button near the toolbar.
-
-The editor has tabs for the toolbar, sidebar and dashboards. Confirm toolbar and sidebar changes with **Save**. Dashboard creation, updates and deletion use their own action buttons in the dashboard forms.
+The editor has tabs for the toolbar, sidebar and dashboards. Confirm toolbar and sidebar changes with **Save**. Dashboard creation, updates and deletion use their own buttons. When the native toolbar menu is unavailable, a fallback settings button appears near the toolbar.
 
 ---
 
@@ -156,15 +94,9 @@ The editor has tabs for the toolbar, sidebar and dashboards. Confirm toolbar and
 
 ## 🔄 Updating the file
 
-**HACS installation:** update HA Nav Manager in HACS, check that its automatically added dashboard resource is removed as described above, then refresh the browser or reopen the mobile app. Replacing only the JS file does not require a Home Assistant restart. Keep the `/hacsfiles/HA-Nav-Manager/ha-nav-manager.js` URL in `extra_module_url`.
+Update **HA Nav Manager** in HACS, restart Home Assistant, then refresh the browser or reopen the Companion App. Existing editor settings are retained. With manual installation, replace the complete integration directory before restarting.
 
-**Manual installation:**
-
-1. Download the current `ha-nav-manager.js` and replace the file in the `www` directory.
-2. Keep the same filename. You then do not need to change `/local/ha-nav-manager.js` under `frontend` → `extra_module_url` in `configuration.yaml`.
-3. In your browser, refresh the Home Assistant page with **F5**. On your phone, close the Home Assistant app and reopen it.
-
-Replacing only the JS file does not require a Home Assistant restart. If you change its filename or path, update the URL in `configuration.yaml` and restart the Home Assistant service. The manager’s saved settings are retained.
+To disable or remove the integration, use **Settings → Devices & services**, then refresh every open HA browser or app to stop its already loaded JavaScript. This does not delete your per-user editor settings.
 
 ---
 
@@ -172,13 +104,12 @@ Replacing only the JS file does not require a Home Assistant restart. If you cha
 
 ## 🩺 If the manager does not appear
 
-**For HACS installations**, use `/hacsfiles/HA-Nav-Manager/ha-nav-manager.js` for the YAML and browser URL checks below. The file is in `www/community/HA-Nav-Manager/`. The `/local/ha-nav-manager.js` examples below refer to manual installation.
-
-1. In your file editor, open the active `configuration.yaml` (for example `/homeassistant/configuration.yaml`). Under `frontend` → `extra_module_url`, check the URL `/local/ha-nav-manager.js`. Its filename must exactly match `ha-nav-manager.js` in the `www` directory, including letter case.
-2. In your browser’s address bar, enter your HA address followed by `/local/ha-nav-manager.js`, for example `http://193.165.1.10:8123/local/ha-nav-manager.js`. Use your own protocol, address and port. It should display JavaScript, not a 404 error or a GitHub page.
-3. After editing YAML, restart the **Home Assistant service**.
-4. **Computer – reload without cache (Chrome/Edge):** on the HA page, press **F12**, open **Network**, select **Disable cache**, then press **Ctrl+Shift+R**. Keep developer tools open during the reload. This bypasses the cache when loading the page; it does not delete all stored browser data.
-5. **Android phone:** close the Home Assistant app. In the phone settings, open **Apps → Home Assistant → App info → Storage → Clear cache**, then reopen the app. Menu names vary by device. Choose **Clear cache**, not **Clear data / Clear storage**, which resets app data. These instructions apply to Android, not iPhone.
+| Problem | What to check |
+| --- | --- |
+| Integration is missing | It was downloaded as **Integration** in HACS, then HA was restarted. For manual installation, check `/config/custom_components/ha_nav_manager/manifest.json`. |
+| Editor is missing | Add **HA Nav Manager** under Devices & services, sign in as an administrator, refresh HA and open a dashboard. |
+| Old interface remains | Restart HA after updating, then use **Ctrl+F5** or reopen the mobile app. |
+| Setup fails | Check the HA logs for `ha_nav_manager` and include your HA version when reporting an issue. |
 
 ---
 
@@ -211,4 +142,4 @@ Arabic and Hebrew use RTL layout. Unsupported languages fall back to English. Re
 
 ## 🛠️ Development
 
-Distribution consists of one JS file. Run `node scripts/update-translations.cjs` to embed the dictionaries from `translations/`. Regression tests use Playwright with model components and a simulated backend; passing them does not guarantee compatibility with every HA release. See the [test instructions](regression-tests/README.md).
+The integration bundles `custom_components/ha_nav_manager/frontend/ha-nav-manager.js`. The root JS file is retained for development and browser tests; synchronize both copies before publishing. Run `node scripts/update-translations.cjs` to embed the dictionaries from `translations/`. Regression tests use Playwright with model components and a simulated backend; passing them does not guarantee compatibility with every HA release. See the [test instructions](regression-tests/README.md).
