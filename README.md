@@ -1,8 +1,6 @@
 <a href="https://github.com/Vachler/HA-Nav-Manager/blob/main/README.md"><img src="https://img.shields.io/badge/🇬🇧%20English-a3e635?style=for-the-badge" alt="English" height="34"></a>
 <a href="https://github.com/Vachler/HA-Nav-Manager/blob/main/README-CZ.md"><img src="https://img.shields.io/badge/🇨🇿%20Čeština-2563eb?style=for-the-badge" alt="Čeština" height="34"></a>
 
-<img src="https://raw.githubusercontent.com/Vachler/HA-Nav-Manager/main/custom_components/ha_nav_manager/brand/icon.png" alt="HA Nav Manager" width="80" align="right">
-
 # HA Nav Manager
 
 
