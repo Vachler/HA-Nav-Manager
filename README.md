@@ -55,6 +55,10 @@ The manager follows native user ordering. Manual ordering explicitly saved in HA
 - Delete dashboards with confirmation. **Deleting a dashboard also removes its Lovelace configuration.**
 - YAML dashboards are read-only. Existing dashboard URLs cannot be changed through this editor.
 
+### Open the editor
+
+The editor has tabs for the toolbar, sidebar and dashboards. Confirm toolbar and sidebar changes with **Save**. Dashboard creation, updates and deletion use their own buttons. When the native toolbar menu is unavailable, a fallback settings button appears near the toolbar.
+
 ---
 
 <a id="requirements"></a>
@@ -105,10 +109,6 @@ The manifest must be at `/config/custom_components/ha_nav_manager/manifest.json`
 5. Open **Settings → Devices & services → Add integration**, search for **HA Nav Manager** and confirm setup. Then refresh the browser or reopen the Companion App.
 
 No YAML changes or dashboard resource registration are required.
-
-### Open the editor
-
-The editor has tabs for the toolbar, sidebar and dashboards. Confirm toolbar and sidebar changes with **Save**. Dashboard creation, updates and deletion use their own buttons. When the native toolbar menu is unavailable, a fallback settings button appears near the toolbar.
 
 ---
 

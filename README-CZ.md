@@ -55,6 +55,10 @@ Správce přebírá nativní uživatelské pořadí. Ruční pořadí výslovně
 - Mazání dashboardů s potvrzením. **Smazání odstraní také jejich Lovelace konfiguraci.**
 - YAML dashboardy jsou pouze pro čtení. URL existujícího dashboardu nelze tímto editorem změnit.
 
+### Otevření editoru
+
+Editor má záložky pro horní lištu, boční panel a dashboardy. Změny lišty a sidebaru potvrďte tlačítkem **Uložit**. Vytváření, aktualizace a mazání dashboardů mají vlastní tlačítka. Pokud není dostupné nativní menu, u lišty se zobrazí náhradní tlačítko nastavení.
+
 ---
 
 <a id="requirements"></a>
@@ -105,10 +109,6 @@ Soubor manifestu musí ležet přesně v `/config/custom_components/ha_nav_manag
 5. Otevřete **Nastavení → Zařízení a služby → Přidat integraci**, vyhledejte **HA Nav Manager** a potvrďte přidání. Poté obnovte prohlížeč nebo znovu otevřete Companion App.
 
 Není potřeba upravovat YAML ani registrovat zdroj dashboardu.
-
-### Otevření editoru
-
-Editor má záložky pro horní lištu, boční panel a dashboardy. Změny lišty a sidebaru potvrďte tlačítkem **Uložit**. Vytváření, aktualizace a mazání dashboardů mají vlastní tlačítka. Pokud není dostupné nativní menu, u lišty se zobrazí náhradní tlačítko nastavení.
 
 ---
 
