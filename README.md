@@ -83,7 +83,28 @@ Home Assistant **2024.7 or newer**, HACS for the recommended installation method
 
 ### Manual installation without HACS
 
-Copy the complete `custom_components/ha_nav_manager` directory from this repository into `/config/custom_components/ha_nav_manager/`, including its `frontend` and `translations` subdirectories. Then follow steps 3–5 above. Installing the root JavaScript file alone is not the integration installation method.
+1. Download the [installation ZIP — ha_nav_manager.zip](https://github.com/Vachler/HA-Nav-Manager/releases/latest/download/ha_nav_manager.zip) from the latest release and extract it. Choose **ha_nav_manager.zip**, rather than GitHub’s **Source code (zip)** archive, which contains the entire development repository.
+2. Copy the extracted **ha_nav_manager** folder into `/config/custom_components/`. If `custom_components` does not exist, create it first. Copy the folder itself, including all its contents.
+3. Check the resulting structure:
+
+```text
+/config/custom_components/ha_nav_manager/
+├── __init__.py
+├── config_flow.py
+├── const.py
+├── manifest.json
+├── strings.json
+├── frontend/
+├── translations/
+└── brand/
+```
+
+The manifest must be at `/config/custom_components/ha_nav_manager/manifest.json`. Do not nest another `custom_components` or `ha_nav_manager` folder inside it. The installer ZIP contains only the integration folder.
+
+4. **Restart Home Assistant**.
+5. Open **Settings → Devices & services → Add integration**, search for **HA Nav Manager** and confirm setup. Then refresh the browser or reopen the Companion App.
+
+No YAML changes or dashboard resource registration are required.
 
 ### Open the editor
 

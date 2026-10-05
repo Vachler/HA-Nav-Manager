@@ -83,7 +83,28 @@ Home Assistant **2024.7 nebo novější**, HACS pro doporučený způsob instala
 
 ### Ruční instalace bez HACS
 
-Z tohoto repozitáře zkopírujte celou složku `custom_components/ha_nav_manager` do `/config/custom_components/ha_nav_manager/`, včetně podsložek `frontend` a `translations`. Poté pokračujte kroky 3–5 výše. Samotný JavaScript v kořeni repozitáře není instalací integrace.
+1. Stáhněte [instalační ZIP — ha_nav_manager.zip](https://github.com/Vachler/HA-Nav-Manager/releases/latest/download/ha_nav_manager.zip) z nejnovějšího vydání a rozbalte jej. Vyberte **ha_nav_manager.zip**, nikoli automatický archiv GitHubu **Source code (zip)**, který obsahuje celý vývojový repozitář.
+2. Rozbalenou složku **ha_nav_manager** zkopírujte do `/config/custom_components/`. Pokud složka `custom_components` neexistuje, nejprve ji vytvořte. Kopírujte složku samotnou včetně veškerého jejího obsahu.
+3. Zkontrolujte výslednou strukturu:
+
+```text
+/config/custom_components/ha_nav_manager/
+├── __init__.py
+├── config_flow.py
+├── const.py
+├── manifest.json
+├── strings.json
+├── frontend/
+├── translations/
+└── brand/
+```
+
+Soubor manifestu musí ležet přesně v `/config/custom_components/ha_nav_manager/manifest.json`. Nevkládejte dovnitř další složku `custom_components` ani `ha_nav_manager`. Instalační ZIP obsahuje pouze složku integrace.
+
+4. **Restartujte Home Assistant**.
+5. Otevřete **Nastavení → Zařízení a služby → Přidat integraci**, vyhledejte **HA Nav Manager** a potvrďte přidání. Poté obnovte prohlížeč nebo znovu otevřete Companion App.
+
+Není potřeba upravovat YAML ani registrovat zdroj dashboardu.
 
 ### Otevření editoru
 
